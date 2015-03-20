@@ -8,13 +8,14 @@
   },
   "homepage": "http://react-bootstrap.github.io/",
   "scripts": {
-    "build": "./node_modules/.bin/grunt build",
+    "build": "./build.sh",
     "test-watch": "karma start",
     "test": "karma start --single-run && npm run lint",
-    "babel-build-amd": "babel --modules amd --optional es7.objectRestSpread src --out-dir tmp-amd",
-    "babel-build-lib": "babel --optional es7.objectRestSpread src --out-dir tmp-lib",
+    "babel-build-amd": "rm -rf tmp-amd && babel --modules amd --optional es7.objectRestSpread src --out-dir tmp-amd",
+    "babel-build-lib": "rm -rf lib && babel --optional es7.objectRestSpread src --out-dir lib",
     "lint": "eslint src test docs ie8 webpack karma.conf.js webpack.config.js webpack.docs.js",
-    "build-docs": "webpack --config webpack.docs.js && node docs/build.js"
+    "docs-build": "rm -rf docs-built && webpack --config webpack.docs.js && node docs/build.js",
+    "docs-run": "node docs/server.js"
   },
   "main": "lib/main.js",
   "directories": {
